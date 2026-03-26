@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 namespace LoggingKata
 {
 
-    // TODO: Create a TacoBell class
-    // that conforms to ITrackable
-
-    // TocoBell call with it's attributes
+    // TocoBell class with it's attributes
     public class TacoBell : ITrackable
     {
 
