@@ -1,6 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152 stable
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingKata", "LoggingKata\LoggingKata.csproj", "{7ADECD8F-C2B8-437F-9BCD-80CA280CB46F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingKata.Test", "LoggingKata.Test\LoggingKata.Test.csproj", "{D12AA5B6-2F62-4BF2-8080-0C276FC1177C}"
@@ -19,5 +20,11 @@ Global
 		{D12AA5B6-2F62-4BF2-8080-0C276FC1177C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D12AA5B6-2F62-4BF2-8080-0C276FC1177C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D12AA5B6-2F62-4BF2-8080-0C276FC1177C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2075E55A-45C2-498A-ADA2-601F17670C17}
 	EndGlobalSection
 EndGlobal

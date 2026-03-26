@@ -1,6 +1,7 @@
 ﻿using System;
 namespace LoggingKata
 {
+    // Interface for logging implementation
     public interface ILog
     {
         void LogFatal(string log, Exception exception = null);
