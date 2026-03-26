@@ -63,10 +63,7 @@ namespace LoggingKata
 
             // TODO: Create an instance of the Point Struct
             // TODO: Set the values of the point correctly (Latitude and Longitude) 
-            
-            Point locationCoOrdinates = new Point();
-            locationCoOrdinates.Latitude = latitude;
-            locationCoOrdinates.Longitude = longitude;
+            Point locationCoOrdinates = new Point(latitude, longitude);
 
             // TODO: Create an instance of the TacoBell class
             // TODO: Set the values of the class correctly (Name and Location)
