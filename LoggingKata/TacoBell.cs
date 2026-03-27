@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace LoggingKata
 {
-
-    // TocoBell class with it's attributes
+    // 'Class': Reference Type.
+    // TocoBell class (Blue-Print) with it's attributes that implements 'ITrackable' interface.
     public class TacoBell : ITrackable
     {
-
+        
+        // Fields/Private members
         private string _name = "";
         private Point _location = new Point();
 
+        // Constructor
         public TacoBell(string name, Point location)
         {
             _name = name;
             _location = location;
         }
 
+        // Properties ('ITrackable' stubbed-out member) implementation
         public string Name 
         { 
             get
@@ -32,6 +35,7 @@ namespace LoggingKata
             }
         }
 
+        // Properties ('ITrackable' stubbed-out member) implementation
         public Point Location 
         { 
             get 

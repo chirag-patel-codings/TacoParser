@@ -1,17 +1,23 @@
 using System;
-
 using System.Linq;
 using System.IO;
-using GeoCoordinatePortable;
+using GeoCoordinatePortable;    // Library
 
 
 namespace LoggingKata
 {
     class Program
     {
-        static readonly ILog logger = new TacoLogger();
-        const string csvPath = "TacoBell-US-AL.csv";
+        
+        static readonly ILog logger = new TacoLogger();     // Injecting (Dynamic Polymorphism). 'readonly': value assigned at 'run' time.
+        const string csvPath = "TacoBell-US-AL.csv";        // constant --> Initialized/value assigned at 'compile' time.
 
+        /// <summary>
+        /// Reads Taco Bell location data from a supplied datafile and finds the maximum geographical spread between two Taco Bells among the data
+        /// using 'TacoParser', 'GeoCoordinatePortable.GeoCoordinate' and 'System.IO.File' classes.
+        /// 'Main' method is the start point of the 'C#' application.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             
@@ -20,7 +26,7 @@ namespace LoggingKata
             var lines = new string[] { };
             try
             {
-
+                // Reading the supplied file using 'System.IO.File' class that returns the 'string[]'
                 lines = File.ReadAllLines(csvPath);
 
                 if (lines.Length == 0)
@@ -72,9 +78,9 @@ namespace LoggingKata
                 return;
             }
 
-
             var parser = new TacoParser();
 
+            // Form the recordset and eliminate incorrect records
             var tacoBells = lines.Select(parser.Parse).Where(t => t != null).ToArray();
 
             if (tacoBells.Length > 0)
@@ -88,11 +94,13 @@ namespace LoggingKata
                 return;
             }
 
+
             ITrackable tacobellOne = null;
             ITrackable tacobellTwo = null;
 
             double farthestDistanceBetweenTacoBells = 0;
 
+            // Iterating to find the maximum distance between two Taco Bells
             for (int i = 0; i < tacoBells.Length; i++)
             {
                 ITrackable locA = tacoBells[i];
@@ -108,7 +116,7 @@ namespace LoggingKata
                     var corB = locB.Location;
                     GeoCoordinate geoLocB = new GeoCoordinate(corB.Latitude, corB.Longitude);
 
-                     var newDistance = Math.Round(geoLocA.GetDistanceTo(geoLocB) / 1609.344, 2);    // 'divide by 1609.344': Gets the distance in Miles
+                    var newDistance = Math.Round(geoLocA.GetDistanceTo(geoLocB) / 1609.344, 2);    // 'divide by 1609.344': Gets the distance in Miles
 
                     if (newDistance >= farthestDistanceBetweenTacoBells)
                     {
@@ -117,10 +125,10 @@ namespace LoggingKata
                         farthestDistanceBetweenTacoBells = newDistance;
                         logger.LogInfo($"New farthest distance of {newDistance} miles found between Taco Bells: {locA.Name} --> {locB.Name}.");
                     }
-
                 }
             }
 
+            // Displaying the final outcome:
             System.Threading.Thread.Sleep(500);
             Console.WriteLine("\n\n--------------------------------------------------------------------------------------------------------------");
             Console.WriteLine($"{tacobellOne.Name} and {tacobellTwo.Name} are located farthest to each other at {farthestDistanceBetweenTacoBells} miles distance.");

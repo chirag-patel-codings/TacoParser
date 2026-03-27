@@ -1,13 +1,23 @@
 ﻿using System;
 
+// 'namespace': Logical boundary (partition) of the code.
+// Members within the namespace can be called by importing the namespace by 'using' statement at the top of the '.cs' file so that
+// they don't require their fully qualified name like 'NamespaceaName.ClassName.MethodName'.
 namespace LoggingKata
 {
+    
     /// <summary>
-    /// Parses a POI file's records one-by-one (supplied as a Single line) to locate all the Taco Bells
+    /// Provides the functionality to parse the Tacobell data. CENTER-POINT OF THE WHOLE APPLICATION.
     /// </summary>
     public class TacoParser
     {
-        readonly ILog logger = new TacoLogger();
+        readonly ILog logger = new TacoLogger();    // Injecting (Dynamic Polymorphism)
+
+        /// <summary>
+        /// This function parses the supplied string and returns the 'ITrackable' object with 'longitude', 'latitude' and 'Name' members
+        /// </summary>
+        /// <param name="line">Contains string comma seperated values.</param>
+        /// <returns>Returns 'TacoBell' Object with properties value assigned or 'null' if values are not parsed correctly.</returns>
         
         public ITrackable Parse(string line)
         {
