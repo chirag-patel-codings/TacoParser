@@ -1,4 +1,5 @@
 using System;
+using System.Net.NetworkInformation;
 using Xunit;
 
 namespace LoggingKata.Test
@@ -6,14 +7,9 @@ namespace LoggingKata.Test
     /// <summary>
     /// This class (Blue-Print) has the implementation of all the tests required for 'Test Driven Development (TDD)' of Taco-Parser project.
     /// </summary>
-    /// <remarks>
-    /// Note: It is NOT possible to implement all the tests for TDD for all the parts like GUI tests are more complex to write and maintain as GUIs 
-    ///       are changed frequenty and incresing the complexities and time to write tests. For the parts where test cannot be implemented or 
-    ///       contains complexity for testing, can be tested manually but their (test) volume must be very low than compared to test written using TDD.
-    /// </remarks>
     public class TacoParserTests
     {
-        [Fact]      // No Test data to supply
+        [Fact]
         public void ShouldReturnNonNullObject()
         {
             //Arrange
@@ -27,8 +23,8 @@ namespace LoggingKata.Test
 
         }
 
-        [Theory]    // Tested with supplied test data
-        [InlineData("34.073638,-84.677017,Taco Bell Acwort...",-84.677017)]     // Test data
+        [Theory]
+        [InlineData("34.073638,-84.677017,Taco Bell Acwort...",-84.677017)]
         [InlineData("33.671982,-85.826674,Taco Bell Annisto...", -85.826674)]
         [InlineData("33.587217,-85.057114,Taco Bell Carrollto...", -85.057114)]
         [InlineData("30.22841,-85.649286,Taco Bell Lynn Have...", -85.649286)]
@@ -47,7 +43,6 @@ namespace LoggingKata.Test
             Assert.Equal(expected, actual);
         }
 
-
         [Theory]
         [InlineData("34.073638,-84.677017,Taco Bell Acwort...", 34.073638)]
         [InlineData("33.671982,-85.826674,Taco Bell Annisto...", 33.671982)]
@@ -64,6 +59,25 @@ namespace LoggingKata.Test
             //Act
             var actual = tacoParser.Parse(line).Location.Latitude;
 
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new double[] {34.376395,-84.913185}, new double[] {34.035985, -84.683302}, 26.96)]
+        [InlineData(new double[] {33.22997, -86.805275}, new double[] {34.035985, -84.683302}, 134.29)]
+        [InlineData(new double[] {34.035985, -84.683302}, new double[] {30.903723, -84.556037}, 216.73)]
+        [InlineData(new double[] {30.906033, -87.79328}, new double[] {34.035985, -84.683302}, 282.4)]
+        [InlineData(new double[] {34.376395, -84.913185}, new double[] {30.654113, -87.912144}, 311.15)]
+        [InlineData(new double[] {30.39371, -87.68332}, new double[] {34.376395, -84.913185}, 319.37)]
+        public void ShouldConfirmDistanceCalculation(double[] coOrdinateA, double[] coOrdinateB, double expected)
+        {
+            //Arrange
+            TacoParser tacoParser = new TacoParser();
+
+            //Act
+            var actual = tacoParser.ParseDistance(new Point(coOrdinateA[0], coOrdinateA[1]), new Point(coOrdinateB[0], coOrdinateB[1]));
+            
             //Assert
             Assert.Equal(expected, actual);
         }

@@ -14,21 +14,21 @@ namespace LoggingKata
         public void LogFatal(string log, Exception exception = null)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Fatal: {log}, Exception {exception}");
+            Console.WriteLine($"\nFatal: {log}, Exception {exception}");
             Console.ForegroundColor = _consoleForegroundColor;
         }
 
         public void LogError(string log, Exception exception = null)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Error: {log}, Exception {exception}");
+            Console.WriteLine($"\nError: {log}, Exception {exception}");
             Console.ForegroundColor = _consoleForegroundColor;
         }
 
         public void LogWarning(string log)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Warning: {log}");
+            Console.WriteLine($"\nWarning: {log}");
             Console.ForegroundColor = _consoleForegroundColor;
         }
 
@@ -39,7 +39,7 @@ namespace LoggingKata
 
         public void LogDebug(string log)
         {
-            Console.WriteLine($"Debug: {log}");
+            Console.WriteLine($"\nDebug: {log}");
         }
     }
 }
