@@ -57,21 +57,25 @@ namespace LoggingKata
             catch (FileNotFoundException ex)
             {
                 logger.LogFatal("File not found at specified path.", ex);
+                Console.ReadLine();
                 return;
             }
             catch (UnauthorizedAccessException ex)
             {
                 logger.LogFatal("Access Denied:", ex);
+                Console.ReadLine();
                 return;
             }
             catch (IOException ex)
             {
                 logger.LogFatal("File is locked.", ex);
+                Console.ReadLine();
                 return;
             }
             catch (Exception ex)
             {
                 logger.LogFatal("Exception occured.", ex);
+                Console.ReadLine();
                 return;
             }
 
@@ -89,6 +93,7 @@ namespace LoggingKata
             else
             {
                 logger.LogFatal("No records in correct format.", new Exception("Operation aborted!!!"));
+                Console.ReadLine();
                 return;
             }
 
@@ -119,7 +124,7 @@ namespace LoggingKata
                         tacobellOne = locA;
                         tacobellTwo = locB;
                         farthestDistanceBetweenTacoBells = newDistance;
-                        logger.LogInfo($"New farthest distance of {newDistance} miles found between Taco Bells: {locA.Name} ({locA.Location.Latitude}, {locA.Location.Longitude})  --> {locB.Name} ({locB.Location.Latitude}, {locB.Location.Longitude})");
+                        logger.LogInfo($"New farthest distance of {newDistance} miles: {locA.Name} ({locA.Location.Latitude}, {locA.Location.Longitude}) --> {locB.Name} ({locB.Location.Latitude}, {locB.Location.Longitude})");
                     }
                 }
             }
